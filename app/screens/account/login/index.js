@@ -1,9 +1,10 @@
 import React, { useRef } from 'react'
 import { StyleSheet, ScrollView, View, Text } from 'react-native'
 import { Divider, Image } from 'react-native-elements'
-import Toast from 'react-native-easy-toast'; //*! Libreria con un problema ir a clase 56 pa arreglar
+import Toast from 'react-native-easy-toast'; //*! Libreria con un problema ir a clase 56 pa arreglar useNativeDriver: true
 import CreateAccount from '../../../components/account/createAccount';
 import LoginForm from '../../../components/account/loginForm';
+import LoginFacebook from '../../../components/account/loginFacebook';
 const Login = () => {
     const toastRef = useRef();
     return (
@@ -23,7 +24,11 @@ const Login = () => {
                     <CreateAccount />
                 </View>
                 <Divider style={styles.divider} />
-                <Text>Social media log</Text>
+                <View
+                    style={styles.viewContainer}
+                >
+                    <LoginFacebook toastRef={toastRef} />
+                </View>
             </ScrollView>
         </>
     )
@@ -34,7 +39,7 @@ export default Login
 const styles = StyleSheet.create({
     logo: {
         width: "100%",
-        height: 200,
+        height: 150,
         marginTop: 20
     },
     viewContainer: {
@@ -43,6 +48,6 @@ const styles = StyleSheet.create({
     },
     divider: {
         backgroundColor: '#00a680',
-        margin: 40
+        margin: 20
     }
 })

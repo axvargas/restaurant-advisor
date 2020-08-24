@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 30
+        marginTop: 20
     },
     inputForm: {
         width: "100%",

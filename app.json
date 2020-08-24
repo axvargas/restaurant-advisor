@@ -19,7 +19,9 @@
     "ios": {
       "supportsTablet": false
     },
-    "android": {},
+    "android": {
+      "package": "com.axvargas.reataurantadvisor"
+    },
     "web": {
       "favicon": "./assets/favicon.png"
     },
