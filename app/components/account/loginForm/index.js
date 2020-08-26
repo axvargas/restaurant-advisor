@@ -17,7 +17,6 @@ const LoginForm = ({ toastRef }) => {
     const password = useRef();
 
     const onSubmit = async (data) => {
-        console.log("Submiting SUCCESS");
         try {
             setLoading(true);
             await firebase.auth().signInWithEmailAndPassword(data.email, data.password);
@@ -45,9 +44,7 @@ const LoginForm = ({ toastRef }) => {
     }
 
     const onError = (errors) => {
-        console.log("Submiting ERROR");
         const { email, password } = errors;
-        console.log("submit errors");
         if (email) {
             toastRef.current.show(email.message, TOAST_DURATION);
         } else if (password) {

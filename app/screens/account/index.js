@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import UserGuest from './userGuest';
 import UserLogged from './userLogged';
 import Loading from '../../components/loading';
 
 import * as firebase from 'firebase';
+import Toast from 'react-native-easy-toast';
 
 const Account = () => {
     const [login, setLogin] = useState(null);
+    const TOAST_DURATION = 3000;
+    const toastRef = useRef();
+
     useEffect(() => {
         const unsubscriber = firebase.auth().onAuthStateChanged(async (user) => {
             try {
@@ -16,13 +20,18 @@ const Account = () => {
             }
         });
         return () => {
-            console.log("Unmounting account");
             unsubscriber();
         }
     }, [])
 
     if (login === null) return <Loading isVisible={true} text="Loading" />;
 
-    return login ? <UserLogged /> : <UserGuest />
+    return (
+        <>
+            <Toast ref={toastRef} position='top' opacity={0.8} />
+            {login ? <UserLogged toastPrincipalRef={toastRef} /> : <UserGuest />}
+        </>
+
+    )
 }
 export default Account;

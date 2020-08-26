@@ -5,10 +5,12 @@ import Toast from 'react-native-easy-toast';
 import * as firebase from 'firebase';
 import Loading from '../../../components/loading';
 import UserInfo from '../../../components/account/userInfo';
-const UserLogged = () => {
+import AccoutOptions from '../../../components/account/accountOptions';
+const UserLogged = ({ toastPrincipalRef }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
     const [loadingText, setLoadingText] = useState(null);
+    const [reloadUserInfo, setReloadUserInfo] = useState(true);
     const TOAST_DURATION = 3000;
     const toastRef = useRef();
     useEffect(() => {
@@ -16,26 +18,36 @@ const UserLogged = () => {
             const userInfo = await firebase.auth().currentUser;
             setUser(userInfo);
         })()
+        setReloadUserInfo(false)
+
         return () => {
             setUser(null);
         }
-    }, [])
+    }, [reloadUserInfo])
 
     return (
         <>
             <Toast ref={toastRef} position='top' opacity={0.8} />
             <View style={styles.viewUserInfo}>
                 {user &&
-                    <UserInfo
-                        user={user}
-                        toastRef={toastRef}
-                        setLoading={setLoading}
-                        setLoadingText={setLoadingText}
-                        TOAST_DURATION={TOAST_DURATION}
-                    />
+                    <>
+                        <UserInfo
+                            user={user}
+                            toastRef={toastRef}
+                            setLoading={setLoading}
+                            setLoadingText={setLoadingText}
+                            TOAST_DURATION={TOAST_DURATION}
+                        />
+                        <AccoutOptions
+                            user={user}
+                            toastRef={toastRef}
+                            TOAST_DURATION={TOAST_DURATION}
+                            setReloadUserInfo={setReloadUserInfo}
+                            toastPrincipalRef={toastPrincipalRef}
+                        />
+                    </>
                 }
 
-                <Text>Account options</Text>
                 <Button
                     raised
                     title="Log out"
@@ -44,15 +56,11 @@ const UserLogged = () => {
                     containerStyle={styles.ctnBtnLogOut}
                     onPress={async () => {
                         try {
-                            // setLoading(true);
-                            await firebase.auth().signOut()
-                            // toastRef.current.show("You logged out", TOAST_DURATION);
-                            // setLoading(false)
+                            toastPrincipalRef.current.show("Logged out", TOAST_DURATION);
+                            await firebase.auth().signOut();
                         } catch (error) {
-                            // setLoading(false)
                             const { message } = error;
                             console.log("ERROR :", message)
-                            // toastRef.current.show(message, TOAST_DURATION);
                         }
 
                     }}
