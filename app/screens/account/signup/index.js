@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { StyleSheet, View, ScrollView } from 'react-native'
 import { Image } from 'react-native-elements';
-import Toast from 'react-native-easy-toast'; //*! Libreria con un problema ir a clase 56 pa arreglar
+import Toast from 'react-native-easy-toast'; //*! Libreria con un problema ir a clase 56 pa arreglar useNativeDriver: true
 import SignupForm from '../../../components/account/signupForm'
 const Signup = () => {
     const toastRef = useRef();

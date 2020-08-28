@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     ctnInput: {
-        marginBottom: 0
+        marginBottom: 80
     },
     btn: {
         backgroundColor: '#00a680'

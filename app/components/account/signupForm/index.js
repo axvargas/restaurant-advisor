@@ -115,7 +115,7 @@ const SignupForm = ({ toastRef }) => {
                         rightIcon={{
                             type: 'material-community',
                             name: showPassword ? 'eye-off-outline' : 'eye-outline',
-                            color: '#c1c1c1',
+                            color: '#00a680',
                             onPress: () => {
                                 setShowPassword(!showPassword)
                             }
@@ -152,7 +152,7 @@ const SignupForm = ({ toastRef }) => {
                         rightIcon={{
                             type: 'material-community',
                             name: showPassword1 ? 'eye-off-outline' : 'eye-outline',
-                            color: '#c1c1c1',
+                            color: '#00a680',
                             onPress: () => {
                                 setShowPassword1(!showPassword1)
                             }

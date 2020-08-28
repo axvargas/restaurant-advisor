@@ -10,16 +10,17 @@ const UserLogged = ({ toastPrincipalRef }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(false);
     const [loadingText, setLoadingText] = useState(null);
-    const [reloadUserInfo, setReloadUserInfo] = useState(true);
+    const [reloadUserInfo, setReloadUserInfo] = useState(false);
     const TOAST_DURATION = 3000;
     const toastRef = useRef();
     useEffect(() => {
         (async () => {
             const userInfo = await firebase.auth().currentUser;
+            console.log("re-renderig");
+
             setUser(userInfo);
         })()
         setReloadUserInfo(false)
-
         return () => {
             setUser(null);
         }

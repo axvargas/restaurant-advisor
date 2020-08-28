@@ -10,6 +10,7 @@ const UserInfo = ({ user, toastRef, setLoading, setLoadingText, TOAST_DURATION }
 
     const uploadImage = async (uri) => {
         const response = await fetch(uri);
+        //clg(JSON.stringify(response))
         const blob = await response.blob();
         try {
             const ref = firebase.storage().ref().child(`avatar/${uid}.jpg`);
@@ -33,10 +34,10 @@ const UserInfo = ({ user, toastRef, setLoading, setLoadingText, TOAST_DURATION }
     }
     const changeAvatar = async () => {
         const { permissions } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-        const resultPermisionCameraRoll = permissions.cameraRoll.status;
-        if (resultPermisionCameraRoll === 'denied') {
+        const resultPermissionCameraRoll = permissions.cameraRoll.status;
+        if (resultPermissionCameraRoll === 'denied') {
             toastRef.current.show("It's necesary to accept the permission to camera roll", TOAST_DURATION);
-        } else if (resultPermisionCameraRoll === 'granted') {
+        } else if (resultPermissionCameraRoll === 'granted') {
             try {
                 const result = await ImagePicker.launchImageLibraryAsync({
                     allowsEditing: true,

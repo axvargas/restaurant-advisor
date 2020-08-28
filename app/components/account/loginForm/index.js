@@ -107,7 +107,7 @@ const LoginForm = ({ toastRef }) => {
                         rightIcon={{
                             type: 'material-community',
                             name: showPassword ? 'eye-off-outline' : 'eye-outline',
-                            color: '#c1c1c1',
+                            color: '#00a680',
                             onPress: () => {
                                 setShowPassword(!showPassword)
                             }

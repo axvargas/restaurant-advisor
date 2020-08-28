@@ -19,10 +19,18 @@
     },
     "android": {
       "package": "com.axvargas.reataurantadvisor",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyC-PN5FRGnHJ9DqTXxcjs7RefA0rVPoiGE"
+        }
+      },
       "permissions": [
         "CAMERA_ROLL",
         "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
+        "WRITE_EXTERNAL_STORAGE",
+        "LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
       ]
     },
     "web": {
