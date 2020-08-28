@@ -25,6 +25,7 @@ const Map = ({ loc, setLoc, isVisibleMap, setIsVisibleMap, toastRef, TOAST_DURAT
                         });
                     } catch (error) {
                         const { message } = error;
+                        setIsVisibleMap(false);
                         toastRef.current.show(message, TOAST_DURATION);
                     }
                 }

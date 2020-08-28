@@ -20,6 +20,7 @@ const LoginForm = ({ toastRef }) => {
         try {
             setLoading(true);
             await firebase.auth().signInWithEmailAndPassword(data.email, data.password);
+            toastRef.current.show("Logged in", TOAST_DURATION);
             setLoading(false);
             navigation.navigate('account');
         } catch (error) {
@@ -53,83 +54,86 @@ const LoginForm = ({ toastRef }) => {
     }
 
     return (
-        <View style={styles.formContainer}>
-            <Controller
-                name="email"
-                control={control}
-                defaultValue=""
-                onFocus={() => {
-                    email.current.focus();
-                }}
-                rules={{
-                    required: "The email is required",
-                    pattern: {
-                        value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                        message: "The email is not valid"
-                    }
-                }}
-                render={({ onChange, onBlur, value }) => (
-                    <Input
-                        placeholder={"Email"}
-                        containerStyle={styles.inputForm}
-                        rightIcon={{
-                            type: 'material-community',
-                            name: 'at',
-                            color: '#c1c1c1',
-                        }}
-                        onChangeText={(value) => {
-                            onChange(value)
-                        }}
-                        value={value}
-                        ref={email}
-                    />
-                )}
-            />
-            <Controller
-                name="password"
-                control={control}
-                defaultValue=""
-                onFocus={() => {
-                    password.current.focus();
-                }}
-                rules={{
-                    required: "The password is required",
-                    minLength: {
-                        value: 6,
-                        message: "Supposed to be minimun 6 character length "
-                    }
-                }}
-                render={({ onChange, onBlur, value }) => (
-                    <Input
-                        placeholder={"Password"}
-                        containerStyle={styles.inputForm}
-                        secureTextEntry={showPassword ? false : true}
-                        rightIcon={{
-                            type: 'material-community',
-                            name: showPassword ? 'eye-off-outline' : 'eye-outline',
-                            color: '#00a680',
-                            onPress: () => {
-                                setShowPassword(!showPassword)
-                            }
-                        }}
-                        onChangeText={(value) => {
-                            onChange(value)
-                        }}
-                        value={value}
-                        ref={password}
-                    />
-                )}
-            />
+        <>
+            <Loading isVisible={loading} text={"Logging in"} />
+            <View style={styles.formContainer}>
+                <Controller
+                    name="email"
+                    control={control}
+                    defaultValue=""
+                    onFocus={() => {
+                        email.current.focus();
+                    }}
+                    rules={{
+                        required: "The email is required",
+                        pattern: {
+                            value: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                            message: "The email is not valid"
+                        }
+                    }}
+                    render={({ onChange, onBlur, value }) => (
+                        <Input
+                            placeholder={"Email"}
+                            containerStyle={styles.inputForm}
+                            rightIcon={{
+                                type: 'material-community',
+                                name: 'at',
+                                color: '#c1c1c1',
+                            }}
+                            onChangeText={(value) => {
+                                onChange(value)
+                            }}
+                            value={value}
+                            ref={email}
+                        />
+                    )}
+                />
+                <Controller
+                    name="password"
+                    control={control}
+                    defaultValue=""
+                    onFocus={() => {
+                        password.current.focus();
+                    }}
+                    rules={{
+                        required: "The password is required",
+                        minLength: {
+                            value: 6,
+                            message: "Supposed to be minimun 6 character length "
+                        }
+                    }}
+                    render={({ onChange, onBlur, value }) => (
+                        <Input
+                            placeholder={"Password"}
+                            containerStyle={styles.inputForm}
+                            secureTextEntry={showPassword ? false : true}
+                            rightIcon={{
+                                type: 'material-community',
+                                name: showPassword ? 'eye-off-outline' : 'eye-outline',
+                                color: '#00a680',
+                                onPress: () => {
+                                    setShowPassword(!showPassword)
+                                }
+                            }}
+                            onChangeText={(value) => {
+                                onChange(value)
+                            }}
+                            value={value}
+                            ref={password}
+                        />
+                    )}
+                />
 
-            <Button
-                raised
-                title="Log in"
-                containerStyle={styles.btnContainerStyle}
-                buttonStyle={styles.btnStyle}
-                onPress={handleSubmit(onSubmit, onError)}
-            />
-            <Loading isVisible={loading} text={"Logging in..."} />
-        </View>
+                <Button
+                    raised
+                    title="Log in"
+                    containerStyle={styles.btnContainerStyle}
+                    buttonStyle={styles.btnStyle}
+                    onPress={handleSubmit(onSubmit, onError)}
+                />
+
+            </View>
+        </>
     )
 };
 

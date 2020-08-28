@@ -15,8 +15,6 @@ const Account = () => {
         const unsubscriber = firebase.auth().onAuthStateChanged(async (user) => {
             try {
                 !user ? setLogin(false) : setLogin(true);
-                console.log("re-renderig");
-
             } catch (error) {
                 console.log(error);
             }

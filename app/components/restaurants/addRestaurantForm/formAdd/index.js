@@ -41,6 +41,7 @@ const FormAdd = ({ toastRef, TOAST_DURATION, setIsLoading }) => {
             const imageBlobs = await uploadImagesToStore();
             await saveRestaurant(data, imageBlobs);
             setIsLoading(false);
+            toastRef.current.show("Restaurant succesfully created", TOAST_DURATION);
             navigation.navigate('restaurants');
         } catch (error) {
             setIsLoading(false);

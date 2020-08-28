@@ -15,8 +15,7 @@ const UserLogged = ({ toastPrincipalRef }) => {
     const toastRef = useRef();
     useEffect(() => {
         (async () => {
-            const userInfo = await firebase.auth().currentUser;
-            console.log("re-renderig");
+            const userInfo = firebase.auth().currentUser;
 
             setUser(userInfo);
         })()
