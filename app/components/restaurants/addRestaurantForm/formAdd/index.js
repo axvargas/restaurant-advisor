@@ -193,6 +193,7 @@ const FormAdd = ({ toastRef, TOAST_DURATION, setIsLoading }) => {
                     }}
                     render={({ onChange, value }) => (
                         <Input
+                            multiline
                             placeholder="Description"
                             containerStyle={styles.ctnInput}
                             onChangeText={(value) => {
