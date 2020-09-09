@@ -26,7 +26,6 @@ const ListRestaurants = ({ restaurants, handleLoadMore, isLoadingMore }) => {
                     ListFooterComponent={<LoadingMoreRestaurants isLoadingMore={isLoadingMore} />}
                 />
 
-
                 :
                 <View style={styles.viewLoader}>
                     <ActivityIndicator size="large" color='#00a680' />

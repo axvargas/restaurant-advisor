@@ -42,6 +42,7 @@ const Restaurants = ({ navigation }) => {
             }
             getSnap();
             getRestaurants();
+
         }, [])
     );
 
