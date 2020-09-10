@@ -3,8 +3,7 @@ import MapView from 'react-native-maps'
 import openMap from 'react-native-open-maps'
 import { Platform } from "react-native";
 const Map = ({ location, name, height }) => {
-    console.log("NAME :", name);
-    console.log("LOCATION :", location);
+
     const openAppMap = () => {
         if (Platform.OS === "ios") {
             openMap({
