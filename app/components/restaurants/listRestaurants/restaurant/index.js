@@ -59,6 +59,6 @@ const styles = StyleSheet.create({
     txtRestaurantdescription: {
         paddingTop: 2,
         color: 'grey',
-        width: 300
+        width: 285
     }
 })

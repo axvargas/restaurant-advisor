@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
+import { useFocusEffect } from '@react-navigation/native';
 import { StyleSheet, Text, View } from 'react-native'
 import { Button, Avatar, Rating } from 'react-native-elements'
 import Review from '../../review';
@@ -24,22 +25,25 @@ const ListReviews = ({ navigation, idRestaurant }) => {
         }
     }, [])
 
-    useEffect(() => {
-        const getReviews = async () => {
-            const reviews = await db.collection('reviews')
-                .where('idRestaurant', '==', idRestaurant)
-                .get()
+    useFocusEffect(
+        useCallback(() => {
+            const getReviews = async () => {
+                const reviews = await db.collection('reviews')
+                    .where('idRestaurant', '==', idRestaurant)
+                    .get()
 
-            const resultReviews = [];
-            reviews.forEach((doc, i) => {
-                const data = doc.data();
-                data.id = doc.id;
-                resultReviews.push(data);
-            })
-            setReviews(resultReviews);
-        }
-        getReviews();
-    }, [])
+                const resultReviews = [];
+                reviews.forEach((doc, i) => {
+                    const data = doc.data();
+                    data.id = doc.id;
+                    resultReviews.push(data);
+                })
+                setReviews(resultReviews);
+            }
+            getReviews();
+        }, [])
+    );
+
     return (
         <View style={styles.viewFooter}>
             {
@@ -78,7 +82,9 @@ const ListReviews = ({ navigation, idRestaurant }) => {
                         <Review key={i} reviewData={review} />
                     ))
                     :
-                    <Text>There are no reviews</Text>
+                    <View>
+                        <Text style={styles.txtNoReviews}>There are no reviews</Text>
+                    </View>
             }
         </View>
     )
@@ -100,5 +106,9 @@ const styles = StyleSheet.create({
     },
     viewFooter: {
         marginBottom: 20
+    },
+    txtNoReviews: {
+        marginTop: 15,
+        textAlign: 'center'
     }
 })

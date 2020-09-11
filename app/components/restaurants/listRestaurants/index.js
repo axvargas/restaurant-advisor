@@ -40,17 +40,17 @@ export default ListRestaurants
 
 const styles = StyleSheet.create({
     view: {
+        flex: 1,
         marginRight: 10,
         marginLeft: 10
     },
     viewLoader: {
-        marginTop: 10,
-        marginBottom: 10,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
     textLoader: {
-        marginTop: 10,
+        marginTop: 20,
         color: '#00a680',
         fontWeight: 'bold'
     }

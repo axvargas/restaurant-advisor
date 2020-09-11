@@ -8,7 +8,6 @@ import Toast from 'react-native-easy-toast';
 
 const Account = () => {
     const [login, setLogin] = useState(null);
-    const TOAST_DURATION = 3000;
     const toastRef = useRef();
 
     useEffect(() => {
