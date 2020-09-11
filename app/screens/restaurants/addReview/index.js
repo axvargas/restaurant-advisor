@@ -55,7 +55,6 @@ const AddReview = ({ route, navigation }) => {
 
     }
     const onError = (errors) => {
-        console.log("ERRORS :", errors);
         const { title, review, rating } = errors
         if (title) {
             toastRef.current.show(title.message, TOAST_DURATION);

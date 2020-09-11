@@ -50,9 +50,7 @@ const FormAdd = ({ toastRef, TOAST_DURATION, setIsLoading }) => {
 
     }
     const onError = (errors) => {
-        console.log(errors);
         const { name, address, location, description, images } = errors;
-        console.log("submit errors");
         if (name) {
             toastRef.current.show(name.message, TOAST_DURATION);
         } else if (address) {
@@ -69,8 +67,6 @@ const FormAdd = ({ toastRef, TOAST_DURATION, setIsLoading }) => {
     }
 
     const uploadImagesToStore = async () => {
-
-        console.log("Saving images...");
         const imageBlobs = [];
         await Promise.all(
             imagesSelected.map(async (image, i) => {

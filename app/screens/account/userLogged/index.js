@@ -60,7 +60,7 @@ const UserLogged = ({ toastPrincipalRef }) => {
                             await firebase.auth().signOut();
                         } catch (error) {
                             const { message } = error;
-                            console.log("ERROR :", message)
+                            toastPrincipalRef.current.show(message, TOAST_DURATION);
                         }
 
                     }}
