@@ -30,7 +30,7 @@ const TopRestaurants = ({ navigation }) => {
     return (
         <View>
             <ListTopRestaurants restaurants={restaurants} navigation={navigation} />
-            <Toast ref={toastRef} position='center' opacity={0.8} />
+            <Toast ref={toastRef} position='top' opacity={0.8} />
         </View>
     )
 }
